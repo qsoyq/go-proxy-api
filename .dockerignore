@@ -1,0 +1,33 @@
+# 忽略所有生成的文件
+# 例如：
+*vendor/
+*bin/
+*.exe
+*.test
+#
+# 忽略所有测试文件
+#
+*.test
+*_test.go
+#
+# 忽略 GoLand IDE 的项目设置
+#
+.idea/
+workspace.xml
+
+# 忽略 Go modules 的缓存目录
+#
+go.mod
+go.sum
+
+# 忽略环境变量文件
+#
+.env
+
+# 忽略日志文件
+#
+logs/*
+
+# 忽略临时文件
+#
+tmp/*

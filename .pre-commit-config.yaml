@@ -1,0 +1,21 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        files: "\\.(py|txt|yaml|json|md|toml|lock|cfg|html|sh|js|yml)$"
+      - id: trailing-whitespace
+        files: "\\.(py|txt|yaml|json|md|toml|lock|cfg|html|sh|js|yml)$"
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-byte-order-marker
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
