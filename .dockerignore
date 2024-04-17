@@ -17,8 +17,8 @@ workspace.xml
 
 # 忽略 Go modules 的缓存目录
 #
-go.mod
-go.sum
+# go.mod
+# go.sum
 
 # 忽略环境变量文件
 #

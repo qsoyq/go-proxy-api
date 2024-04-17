@@ -4,9 +4,9 @@ WORKDIR  /home/app
 
 ADD . .
 
-RUN go build -o bin/main.app src/main.go
+RUN go build -o bin/app src/main.go
 
-RUN chmod +x bin/main.app
+RUN chmod +x bin/app
 
 FROM debian:latest
 
@@ -16,4 +16,4 @@ EXPOSE 8000
 
 COPY --from=builder /home/app/bin/ ./
 
-CMD ./main.app
+CMD ./app
