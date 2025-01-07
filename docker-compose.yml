@@ -1,6 +1,5 @@
 services:
   go-proxy-api:
-    container_name: go-proxy-api
     platform: linux/amd64
     ports:
       - 8000:8000

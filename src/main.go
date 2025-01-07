@@ -1,10 +1,12 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +18,17 @@ import (
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
+
+var swaggerPath string
+
+func getCurrentFilePath() string {
+	// 获取调用者的文件信息
+	_, file, _, ok := runtime.Caller(1)
+	if !ok {
+		return ""
+	}
+	return file
+}
 
 func redocHandler(doc redoc.Redoc) gin.HandlerFunc {
 	handler := doc.Handler()
@@ -31,11 +44,12 @@ func redocHandler(doc redoc.Redoc) gin.HandlerFunc {
 }
 
 func setupOpenAPI(r *gin.Engine) {
+	fmt.Println("swagger path: ", swaggerPath)
 	doc := redoc.Redoc{
 		Title:       "go-proxy-api",
 		Description: "",
-		SpecFile:    "./docs/swagger.json", // "./openapi.yaml"
-		SpecPath:    "/openapi.json",       // "/openapi.yaml"
+		SpecFile:    swaggerPath,     // "./openapi.yaml"
+		SpecPath:    "/openapi.json", // "/openapi.yaml"
 		DocsPath:    "/redoc",
 	}
 	r.Use(redocHandler(doc))
@@ -56,6 +70,9 @@ func setup() *gin.Engine {
 // @description
 // @BasePath	/api
 func main() {
+	_swaggerPath := flag.String("swagger", "./src/docs/swagger.json", "swagger json path")
+	flag.Parse()
+	swaggerPath = *_swaggerPath
 	r := setup()
 	port := os.Getenv("PORT")
 	if port == "" {

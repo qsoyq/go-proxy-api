@@ -20,4 +20,4 @@ COPY --from=builder /home/app/bin/ ./
 
 COPY --from=builder /home/app/src/docs ./docs
 
-CMD ./app
+CMD ./app --swagger ./docs/swagger.json
