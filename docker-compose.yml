@@ -1,9 +1,9 @@
-version: "3.8"
-
 services:
   go-proxy-api:
     container_name: go-proxy-api
     platform: linux/amd64
+    ports:
+      - 8000:8000
     build:
       dockerfile: ./Dockerfile
     restart: unless-stopped

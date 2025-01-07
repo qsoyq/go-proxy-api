@@ -6,7 +6,6 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/mvrilo/go-redoc v0.1.5
 	github.com/mvrilo/go-redoc/_examples/gen v0.0.0-20240120021923-101384bb3acd
-	github.com/mvrilo/go-redoc/gin v0.0.0-20240120021923-101384bb3acd
 	github.com/sbabiv/xml2map v1.2.1
 	github.com/stretchr/testify v1.8.4
 	github.com/swaggo/files v1.0.1
@@ -31,6 +30,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
