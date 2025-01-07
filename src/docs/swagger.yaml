@@ -1,0 +1,58 @@
+basePath: /api
+definitions:
+  xml.ConvertXMLInput:
+    properties:
+      content:
+        example: <note><to>value</to></note>
+        type: string
+    type: object
+info:
+  contact: {}
+  title: go-proxy-api
+  version: "1.0"
+paths:
+  /convert/xml/json:
+    get:
+      consumes:
+      - application/json
+      description: 将传入的 xml 字符串转成 json字符串并返回
+      operationId: convert.xml.json.get
+      parameters:
+      - description: xml 字符串
+        in: query
+        name: content
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/xml.ConvertXMLInput'
+      summary: XML 转 JSON
+      tags:
+      - convert
+    post:
+      consumes:
+      - application/json
+      description: 将传入的 xml 字符串转成 json字符串并返回
+      operationId: convert.xml.json.post
+      parameters:
+      - description: 输入对象
+        in: body
+        name: content
+        required: true
+        schema:
+          $ref: '#/definitions/xml.ConvertXMLInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/xml.ConvertXMLInput'
+      summary: XML 转 JSON
+      tags:
+      - convert
+swagger: "2.0"

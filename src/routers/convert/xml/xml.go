@@ -12,23 +12,22 @@ import (
 )
 
 type ConvertXMLInput struct {
-	Content string `json:"content" form:"content"`
+	Content string `json:"content" form:"content" example:"<note><to>value</to></note>"`
 }
 
 func AddXMLRouter(router *gin.Engine) {
 	group := router.Group("/api/convert/xml")
-	group.GET("/json", toJsonGet)
-	group.POST("/json", toJsonGet)
+	group.GET("/json", toJson)
+	group.POST("/json", toJson)
 }
 
-func toJsonGet(c *gin.Context) {
+func toJson(c *gin.Context) {
 	var input ConvertXMLInput
 	switch c.Request.Method {
 	case "GET":
 		c.ShouldBindQuery(&input)
 	case "POST":
 		c.ShouldBindJSON(&input)
-
 	}
 
 	if len(input.Content) == 0 {
@@ -49,3 +48,25 @@ func toJsonGet(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"content": string(output)})
 }
+
+// @id				convert.xml.json.get
+// @Summary		XML 转 JSON
+// @Description	将传入的 xml 字符串转成 json字符串并返回
+// @Tags			convert
+// @Accept			json
+// @Produce 		json
+// @Param			content	query	string	true	"xml 字符串"
+// @Router			/convert/xml/json [get]
+// @Success      200  {object}  ConvertXMLInput
+func _(c *gin.Context) {}
+
+// @id				convert.xml.json.post
+// @Summary		XML 转 JSON
+// @Description	将传入的 xml 字符串转成 json字符串并返回
+// @Tags			convert
+// @Accept			json
+// @Produce 		json
+// @Param			content	body	ConvertXMLInput true "输入对象" example(AAAA)
+// @Router			/convert/xml/json [post]
+// @Success      200  {object}  ConvertXMLInput
+func _(c *gin.Context) {}

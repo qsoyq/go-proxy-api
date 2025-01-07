@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "go-proxy-api",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/convert/xml/json": {
+            "get": {
+                "description": "将传入的 xml 字符串转成 json字符串并返回",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "convert"
+                ],
+                "summary": "XML 转 JSON",
+                "operationId": "convert.xml.json.get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "xml 字符串",
+                        "name": "content",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/xml.ConvertXMLInput"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "将传入的 xml 字符串转成 json字符串并返回",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "convert"
+                ],
+                "summary": "XML 转 JSON",
+                "operationId": "convert.xml.json.post",
+                "parameters": [
+                    {
+                        "description": "输入对象",
+                        "name": "content",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/xml.ConvertXMLInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/xml.ConvertXMLInput"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "xml.ConvertXMLInput": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "example": "\u003cnote\u003e\u003cto\u003evalue\u003c/to\u003e\u003c/note\u003e"
+                }
+            }
+        }
+    }
+}
