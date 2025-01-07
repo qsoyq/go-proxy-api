@@ -16,14 +16,20 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-var swaggerPath string
+type CommandLine struct {
+	SwaggerPath        string
+	RedirectIfNotFound bool
+	RedirectScheme     string
+	RedirectHost       string
+}
+
+var cmd CommandLine
 
 func setupOpenAPI(r *gin.Engine) {
-	fmt.Println("swagger path: ", swaggerPath)
 	doc := redoc.Redoc{
 		Title:       "go-proxy-api",
 		Description: "",
-		SpecFile:    swaggerPath,     // "./openapi.yaml"
+		SpecFile:    cmd.SwaggerPath, // "./openapi.yaml"
 		SpecPath:    "/openapi.json", // "/openapi.yaml"
 		DocsPath:    "/redoc",
 	}
@@ -36,6 +42,9 @@ func setupOpenAPI(r *gin.Engine) {
 func setup() *gin.Engine {
 	r := routers.SetupRouter()
 	setupOpenAPI(r)
+	if cmd.RedirectIfNotFound {
+		r.Use(middleware.HTTPNotFoundRedirectHandler(cmd.RedirectScheme, cmd.RedirectHost))
+	}
 	return r
 }
 
@@ -44,9 +53,13 @@ func setup() *gin.Engine {
 // @description
 // @BasePath	/api
 func main() {
-	_swaggerPath := flag.String("swagger", "./src/docs/swagger.json", "swagger json path")
+	flag.StringVar(&cmd.SwaggerPath, "swagger", "./src/docs/swagger.json", "swagger json path")
+	flag.BoolVar(&cmd.RedirectIfNotFound, "redirect", false, "是否启用 404 下自动重定向")
+	flag.StringVar(&cmd.RedirectHost, "redirect-host", "", "http or https")
+	flag.StringVar(&cmd.RedirectScheme, "redirect-scheme", "", "domain or ip address")
+
 	flag.Parse()
-	swaggerPath = *_swaggerPath
+
 	r := setup()
 	port := os.Getenv("PORT")
 	if port == "" {
