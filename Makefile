@@ -1,6 +1,9 @@
-.PHONY: default precommit build generate
+.PHONY: default precommit build swag run
 
 default: precommit
+
+run:
+	@go run src/main.go
 
 install:
 	@pip install pre-commit
@@ -14,7 +17,8 @@ precommit:
 	@pre-commit install
 	@pre-commit run --all-file
 
-generate:
-	@cd src 
-	@swag init 
-	@cd ..
+swag:
+	@swag init -d src -o src/docs
+
+test:
+	@go test ./src...

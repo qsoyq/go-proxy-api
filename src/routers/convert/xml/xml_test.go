@@ -1,4 +1,4 @@
-package xml
+package xml_test
 
 import (
 	"encoding/json"
@@ -14,7 +14,6 @@ import (
 
 func TestConvertXMLToJSONRoute(t *testing.T) {
 	router := routers.SetupRouter()
-	AddXMLRouter(router)
 
 	xmlStr := "<person><name>John Doe</name><age>30</age></person>"
 	// GET 请求测试

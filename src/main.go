@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"runtime"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -14,21 +13,11 @@ import (
 	_ "github.com/mvrilo/go-redoc/_examples/gen/docs"
 
 	"github.com/qsoyq/go-proxy-api/src/routers"
-	"github.com/qsoyq/go-proxy-api/src/routers/convert/xml"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 var swaggerPath string
-
-func getCurrentFilePath() string {
-	// 获取调用者的文件信息
-	_, file, _, ok := runtime.Caller(1)
-	if !ok {
-		return ""
-	}
-	return file
-}
 
 func redocHandler(doc redoc.Redoc) gin.HandlerFunc {
 	handler := doc.Handler()
@@ -61,7 +50,6 @@ func setupOpenAPI(r *gin.Engine) {
 func setup() *gin.Engine {
 	r := routers.SetupRouter()
 	setupOpenAPI(r)
-	xml.AddXMLRouter(r)
 	return r
 }
 
