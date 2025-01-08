@@ -12,10 +12,12 @@ import (
 )
 
 type ConvertXMLInput struct {
+	// xml 字符串
 	Content string `json:"content" form:"content" binding:"required" example:"<note><to>value</to></note>"`
 }
 
 type ConvertXMLOutput struct {
+	// json 字符串
 	Content string `json:"content" form:"content" binding:"required" example:"{\"note\": {\"to\": \"value\"}}"`
 }
 
@@ -59,7 +61,7 @@ func toJson(c *gin.Context) {
 // @Tags			convert
 // @Accept			json
 // @Produce 		json
-// @Param			content	query	string	true	"xml 字符串"
+// @Param			content	query	string	true	"xml字符串"
 // @Router			/convert/xml/json [get]
 // @Success      200  {object}  ConvertXMLOutput
 func _(c *gin.Context) {}
@@ -70,7 +72,7 @@ func _(c *gin.Context) {}
 // @Tags			convert
 // @Accept			json
 // @Produce 		json
-// @Param			content	body	ConvertXMLInput true "输入对象"
+// @Param			content	body	ConvertXMLInput true "-"
 // @Router			/convert/xml/json [post]
 // @Success      200  {object}  ConvertXMLOutput
 func _(c *gin.Context) {}

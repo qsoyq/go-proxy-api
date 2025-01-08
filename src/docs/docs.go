@@ -56,7 +56,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "xml 字符串",
+                        "description": "xml字符串",
                         "name": "content",
                         "in": "query",
                         "required": true
@@ -86,7 +86,7 @@ const docTemplate = `{
                 "operationId": "convert.xml.json.post",
                 "parameters": [
                     {
-                        "description": "输入对象",
+                        "description": "-",
                         "name": "content",
                         "in": "body",
                         "required": true,
@@ -209,6 +209,7 @@ const docTemplate = `{
             ],
             "properties": {
                 "content": {
+                    "description": "xml 字符串",
                     "type": "string",
                     "example": "\u003cnote\u003e\u003cto\u003evalue\u003c/to\u003e\u003c/note\u003e"
                 }
@@ -221,6 +222,7 @@ const docTemplate = `{
             ],
             "properties": {
                 "content": {
+                    "description": "json 字符串",
                     "type": "string",
                     "example": "{\"note\": {\"to\": \"value\"}}"
                 }

@@ -56,6 +56,7 @@ definitions:
   xml.ConvertXMLInput:
     properties:
       content:
+        description: xml 字符串
         example: <note><to>value</to></note>
         type: string
     required:
@@ -64,6 +65,7 @@ definitions:
   xml.ConvertXMLOutput:
     properties:
       content:
+        description: json 字符串
         example: '{"note": {"to": "value"}}'
         type: string
     required:
@@ -97,7 +99,7 @@ paths:
       description: 将传入的 xml 字符串转成 json字符串并返回
       operationId: convert.xml.json.get
       parameters:
-      - description: xml 字符串
+      - description: xml字符串
         in: query
         name: content
         required: true
@@ -118,7 +120,7 @@ paths:
       description: 将传入的 xml 字符串转成 json字符串并返回
       operationId: convert.xml.json.post
       parameters:
-      - description: 输入对象
+      - description: '-'
         in: body
         name: content
         required: true
