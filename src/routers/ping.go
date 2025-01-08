@@ -5,9 +5,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/qsoyq/go-proxy-api/src/constants"
 )
-
-const VERSION = "0.1.0"
 
 var RUN_AT_TS = time.Now().Unix()
 var RUN_AT = (time.Now()).Format(time.DateTime)
@@ -31,7 +30,7 @@ func pingHandler(ctx *gin.Context) {
 	current := time.Now()
 	timestamp := current.Unix()
 	formattedTime := current.Format(time.DateTime)
-	output := PingOutputScheme{Message: "pong", Timestamp: timestamp, Current: formattedTime, RunAtTs: RUN_AT_TS, RunAt: RUN_AT, Version: VERSION}
+	output := PingOutputScheme{Message: "pong", Timestamp: timestamp, Current: formattedTime, RunAtTs: RUN_AT_TS, RunAt: RUN_AT, Version: constants.VERSION}
 	ctx.JSON(http.StatusOK, output)
 }
 
