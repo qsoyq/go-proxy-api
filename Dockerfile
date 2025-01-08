@@ -12,6 +12,8 @@ RUN chmod +x bin/app
 
 FROM debian:latest
 
+ENV TZ=Asia/Shanghai
+
 WORKDIR  /home/app
 
 EXPOSE 8000
