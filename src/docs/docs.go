@@ -15,6 +15,30 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/": {
+            "get": {
+                "description": "Ping",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    ""
+                ],
+                "summary": "Ping",
+                "operationId": "/.get",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routers.PingOutputScheme"
+                        }
+                    }
+                }
+            }
+        },
         "/convert/xml/json": {
             "get": {
                 "description": "将传入的 xml 字符串转成 json字符串并返回",
@@ -80,9 +104,70 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/ping": {
+            "get": {
+                "description": "Ping",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    ""
+                ],
+                "summary": "Ping",
+                "operationId": "ping.get",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routers.PingOutputScheme"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "routers.PingOutputScheme": {
+            "type": "object",
+            "required": [
+                "current",
+                "message",
+                "run_at",
+                "run_at_ts",
+                "timestamp",
+                "version"
+            ],
+            "properties": {
+                "current": {
+                    "type": "string",
+                    "example": "2025-01-08 10:25:20"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "pong"
+                },
+                "run_at": {
+                    "type": "string",
+                    "example": "2025-01-08 10:25:20"
+                },
+                "run_at_ts": {
+                    "type": "integer",
+                    "example": 1736303120
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "example": 1736303120
+                },
+                "version": {
+                    "type": "string",
+                    "example": "0.1.0"
+                }
+            }
+        },
         "xml.ConvertXMLInput": {
             "type": "object",
             "required": [

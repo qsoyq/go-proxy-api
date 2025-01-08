@@ -19,5 +19,6 @@ func RedocHandler(doc redoc.Redoc) gin.HandlerFunc {
 			}
 		}
 		ctx.Next()
+
 	}
 }

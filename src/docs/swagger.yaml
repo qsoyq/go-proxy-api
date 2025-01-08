@@ -1,5 +1,33 @@
 basePath: /api
 definitions:
+  routers.PingOutputScheme:
+    properties:
+      current:
+        example: "2025-01-08 10:25:20"
+        type: string
+      message:
+        example: pong
+        type: string
+      run_at:
+        example: "2025-01-08 10:25:20"
+        type: string
+      run_at_ts:
+        example: 1736303120
+        type: integer
+      timestamp:
+        example: 1736303120
+        type: integer
+      version:
+        example: 0.1.0
+        type: string
+    required:
+    - current
+    - message
+    - run_at
+    - run_at_ts
+    - timestamp
+    - version
+    type: object
   xml.ConvertXMLInput:
     properties:
       content:
@@ -21,6 +49,22 @@ info:
   title: go-proxy-api
   version: "1.0"
 paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: Ping
+      operationId: /.get
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routers.PingOutputScheme'
+      summary: Ping
+      tags:
+      - ""
   /convert/xml/json:
     get:
       consumes:
@@ -65,4 +109,20 @@ paths:
       summary: XML 转 JSON
       tags:
       - convert
+  /ping:
+    get:
+      consumes:
+      - application/json
+      description: Ping
+      operationId: ping.get
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routers.PingOutputScheme'
+      summary: Ping
+      tags:
+      - ""
 swagger: "2.0"
