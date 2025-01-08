@@ -131,10 +131,30 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "routers.PingDocsScheme": {
+            "type": "object",
+            "required": [
+                "docs",
+                "redoc"
+            ],
+            "properties": {
+                "docs": {
+                    "description": "指向 Swagger UI 文档格式的页面",
+                    "type": "string",
+                    "example": "/docs/index.html"
+                },
+                "redoc": {
+                    "description": "指向 Redoc 文档格式的页面",
+                    "type": "string",
+                    "example": "/redoc"
+                }
+            }
+        },
         "routers.PingOutputScheme": {
             "type": "object",
             "required": [
                 "current",
+                "docs",
                 "message",
                 "run_at",
                 "run_at_ts",
@@ -143,26 +163,40 @@ const docTemplate = `{
             ],
             "properties": {
                 "current": {
+                    "description": "当前日期时间字符串",
                     "type": "string",
                     "example": "2025-01-08 10:25:20"
                 },
+                "docs": {
+                    "description": "接口文档",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/routers.PingDocsScheme"
+                        }
+                    ]
+                },
                 "message": {
+                    "description": "保留字段",
                     "type": "string",
                     "example": "pong"
                 },
                 "run_at": {
+                    "description": "服务启动时的日期时间字符串",
                     "type": "string",
                     "example": "2025-01-08 10:25:20"
                 },
                 "run_at_ts": {
+                    "description": "服务启动时的时间戳",
                     "type": "integer",
                     "example": 1736303120
                 },
                 "timestamp": {
+                    "description": "当前时间戳",
                     "type": "integer",
                     "example": 1736303120
                 },
                 "version": {
+                    "description": "版本号",
                     "type": "string",
                     "example": "0.1.0"
                 }
@@ -197,7 +231,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "0.1.0",
+	Version:          "0.1.1",
 	Host:             "",
 	BasePath:         "/api",
 	Schemes:          []string{},

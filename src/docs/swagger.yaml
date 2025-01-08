@@ -1,27 +1,52 @@
 basePath: /api
 definitions:
+  routers.PingDocsScheme:
+    properties:
+      docs:
+        description: 指向 Swagger UI 文档格式的页面
+        example: /docs/index.html
+        type: string
+      redoc:
+        description: 指向 Redoc 文档格式的页面
+        example: /redoc
+        type: string
+    required:
+    - docs
+    - redoc
+    type: object
   routers.PingOutputScheme:
     properties:
       current:
+        description: 当前日期时间字符串
         example: "2025-01-08 10:25:20"
         type: string
+      docs:
+        allOf:
+        - $ref: '#/definitions/routers.PingDocsScheme'
+        description: 接口文档
       message:
+        description: 保留字段
         example: pong
         type: string
       run_at:
+        description: 服务启动时的日期时间字符串
         example: "2025-01-08 10:25:20"
         type: string
       run_at_ts:
+        description: 服务启动时的时间戳
         example: 1736303120
         type: integer
       timestamp:
+        description: 当前时间戳
         example: 1736303120
         type: integer
       version:
+        description: 版本号
         example: 0.1.0
         type: string
     required:
     - current
+    - docs
     - message
     - run_at
     - run_at_ts
@@ -47,7 +72,7 @@ definitions:
 info:
   contact: {}
   title: go-proxy-api
-  version: 0.1.0
+  version: 0.1.1
 paths:
   /:
     get:
