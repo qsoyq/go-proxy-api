@@ -74,7 +74,7 @@ definitions:
 info:
   contact: {}
   title: go-proxy-api
-  version: 0.1.1
+  version: 0.1.2
 paths:
   /:
     get:
@@ -92,6 +92,30 @@ paths:
       summary: Ping
       tags:
       - ""
+  /convert/svg/png:
+    get:
+      description: 将 SVG 图片转为 png
+      operationId: convert.svg.png.get
+      parameters:
+      - description: svg图片地址
+        example: https://www.docker.com/wp-content/uploads/2024/01/icon-docker-square.svg
+        in: query
+        name: url
+        required: true
+        type: string
+      - description: 是否下载
+        example: false
+        in: query
+        name: download
+        type: boolean
+      produces:
+      - image/png
+      responses:
+        "200":
+          description: OK
+      summary: SVG to PNG
+      tags:
+      - convert
   /convert/xml/json:
     get:
       consumes:
@@ -111,7 +135,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/xml.ConvertXMLOutput'
-      summary: XML 转 JSON
+      summary: XML to JSON
       tags:
       - convert
     post:
@@ -133,7 +157,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/xml.ConvertXMLOutput'
-      summary: XML 转 JSON
+      summary: XML to JSON
       tags:
       - convert
   /ping:

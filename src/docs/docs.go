@@ -39,6 +39,41 @@ const docTemplate = `{
                 }
             }
         },
+        "/convert/svg/png": {
+            "get": {
+                "description": "将 SVG 图片转为 png",
+                "produces": [
+                    "image/png"
+                ],
+                "tags": [
+                    "convert"
+                ],
+                "summary": "SVG to PNG",
+                "operationId": "convert.svg.png.get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "example": "https://www.docker.com/wp-content/uploads/2024/01/icon-docker-square.svg",
+                        "description": "svg图片地址",
+                        "name": "url",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "是否下载",
+                        "name": "download",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/convert/xml/json": {
             "get": {
                 "description": "将传入的 xml 字符串转成 json字符串并返回",
@@ -51,7 +86,7 @@ const docTemplate = `{
                 "tags": [
                     "convert"
                 ],
-                "summary": "XML 转 JSON",
+                "summary": "XML to JSON",
                 "operationId": "convert.xml.json.get",
                 "parameters": [
                     {
@@ -82,7 +117,7 @@ const docTemplate = `{
                 "tags": [
                     "convert"
                 ],
-                "summary": "XML 转 JSON",
+                "summary": "XML to JSON",
                 "operationId": "convert.xml.json.post",
                 "parameters": [
                     {
@@ -233,7 +268,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "0.1.1",
+	Version:          "0.1.2",
 	Host:             "",
 	BasePath:         "/api",
 	Schemes:          []string{},

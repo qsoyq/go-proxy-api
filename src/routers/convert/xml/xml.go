@@ -56,7 +56,7 @@ func toJson(c *gin.Context) {
 }
 
 // @id				convert.xml.json.get
-// @Summary		XML 转 JSON
+// @Summary		XML to JSON
 // @Description	将传入的 xml 字符串转成 json字符串并返回
 // @Tags			convert
 // @Accept			json
@@ -67,7 +67,7 @@ func toJson(c *gin.Context) {
 func _(c *gin.Context) {}
 
 // @id				convert.xml.json.post
-// @Summary		XML 转 JSON
+// @Summary		XML to JSON
 // @Description	将传入的 xml 字符串转成 json字符串并返回
 // @Tags			convert
 // @Accept			json

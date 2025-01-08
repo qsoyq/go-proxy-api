@@ -49,7 +49,7 @@ func setup() *gin.Engine {
 }
 
 // @title	go-proxy-api
-// @version	0.1.1
+// @version	0.1.2
 // @description
 // @BasePath	/api
 func main() {

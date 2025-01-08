@@ -1,25 +1,26 @@
-FROM golang:latest as builder
+FROM golang:alpine AS builder
 
-WORKDIR  /home/app
+WORKDIR /home/app
 
-ADD . .
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN go mod tidy
+COPY src/ ./src/
 
 RUN go build -o bin/app src/main.go
 
-RUN chmod +x bin/app
+FROM debian:bullseye-slim
 
-FROM debian:latest
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \
+    apt-get clean
 
 ENV TZ=Asia/Shanghai
 
-WORKDIR  /home/app
+WORKDIR /home/app
 
 EXPOSE 8000
 
-COPY --from=builder /home/app/bin/ ./
-
+COPY --from=builder /home/app/bin/app ./
 COPY --from=builder /home/app/src/docs ./docs
 
-CMD ./app --swagger ./docs/swagger.json
+CMD ["./app", "--swagger", "./docs/swagger.json"]
