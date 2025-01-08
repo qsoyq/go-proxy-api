@@ -42,7 +42,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/xml.ConvertXMLInput"
+                            "$ref": "#/definitions/xml.ConvertXMLOutput"
                         }
                     }
                 }
@@ -75,7 +75,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/xml.ConvertXMLInput"
+                            "$ref": "#/definitions/xml.ConvertXMLOutput"
                         }
                     }
                 }
@@ -85,10 +85,25 @@ const docTemplate = `{
     "definitions": {
         "xml.ConvertXMLInput": {
             "type": "object",
+            "required": [
+                "content"
+            ],
             "properties": {
                 "content": {
                     "type": "string",
                     "example": "\u003cnote\u003e\u003cto\u003evalue\u003c/to\u003e\u003c/note\u003e"
+                }
+            }
+        },
+        "xml.ConvertXMLOutput": {
+            "type": "object",
+            "required": [
+                "content"
+            ],
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "example": "{\"note\": {\"to\": \"value\"}}"
                 }
             }
         }

@@ -5,6 +5,16 @@ definitions:
       content:
         example: <note><to>value</to></note>
         type: string
+    required:
+    - content
+    type: object
+  xml.ConvertXMLOutput:
+    properties:
+      content:
+        example: '{"note": {"to": "value"}}'
+        type: string
+    required:
+    - content
     type: object
 info:
   contact: {}
@@ -29,7 +39,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/xml.ConvertXMLInput'
+            $ref: '#/definitions/xml.ConvertXMLOutput'
       summary: XML 转 JSON
       tags:
       - convert
@@ -51,7 +61,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/xml.ConvertXMLInput'
+            $ref: '#/definitions/xml.ConvertXMLOutput'
       summary: XML 转 JSON
       tags:
       - convert
