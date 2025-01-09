@@ -55,24 +55,24 @@ func toJson(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"content": string(output)})
 }
 
-// @id				convert.xml.json.get
-// @Summary		XML to JSON
-// @Description	将传入的 xml 字符串转成 json字符串并返回
-// @Tags			convert
-// @Accept			json
-// @Produce 		json
-// @Param			content	query	string	true	"xml字符串"
-// @Router			/convert/xml/json [get]
-// @Success      200  {object}  ConvertXMLOutput
+//	@id				convert.xml.json.get
+//	@Summary		XML to JSON
+//	@Description	将传入的 xml 字符串转成 json字符串并返回
+//	@Tags			convert
+//	@Accept			json
+//	@Produce		json
+//	@Param			content	query	string	true	"xml字符串"
+//	@Router			/convert/xml/json [get]
+//	@Success		200	{object}	ConvertXMLOutput
 func _(c *gin.Context) {}
 
-// @id				convert.xml.json.post
-// @Summary		XML to JSON
-// @Description	将传入的 xml 字符串转成 json字符串并返回
-// @Tags			convert
-// @Accept			json
-// @Produce 		json
-// @Param			content	body	ConvertXMLInput true "-"
-// @Router			/convert/xml/json [post]
-// @Success      200  {object}  ConvertXMLOutput
+//	@id				convert.xml.json.post
+//	@Summary		XML to JSON
+//	@Description	将传入的 xml 字符串转成 json字符串并返回
+//	@Tags			convert
+//	@Accept			json
+//	@Produce		json
+//	@Param			content	body	ConvertXMLInput	true	"-"
+//	@Router			/convert/xml/json [post]
+//	@Success		200	{object}	ConvertXMLOutput
 func _(c *gin.Context) {}

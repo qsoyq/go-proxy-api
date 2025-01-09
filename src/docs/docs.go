@@ -39,6 +39,37 @@ const docTemplate = `{
                 }
             }
         },
+        "/apple/location/{code}": {
+            "get": {
+                "description": "返回 code 文本",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Apple"
+                ],
+                "summary": "Location Code",
+                "operationId": "apple.location.code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "example": "US",
+                        "description": "地区代码",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/convert/svg/png": {
             "get": {
                 "description": "将 SVG 图片转为 png",

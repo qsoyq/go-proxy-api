@@ -50,22 +50,22 @@ func pingHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, output)
 }
 
-// @id		    ping.get
-// @Summary		Ping
-// @Description	Ping
-// @Tags
-// @Accept			json
-// @Produce 		json
-// @Router			/ping [get]
-// @Success      200  {object}  PingOutputScheme
+//	@id				ping.get
+//	@Summary		Ping
+//	@Description	Ping
+//	@Tags
+//	@Accept		json
+//	@Produce	json
+//	@Router		/ping [get]
+//	@Success	200	{object}	PingOutputScheme
 func _(c *gin.Context) {}
 
-// @id		    /.get
-// @Summary		Ping
-// @Description	Ping
-// @Tags
-// @Accept			json
-// @Produce 		json
-// @Router			/ [get]
-// @Success      200  {object}  PingOutputScheme
+//	@id				/.get
+//	@Summary		Ping
+//	@Description	Ping
+//	@Tags
+//	@Accept		json
+//	@Produce	json
+//	@Router		/ [get]
+//	@Success	200	{object}	PingOutputScheme
 func _(c *gin.Context) {}

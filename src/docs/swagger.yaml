@@ -92,6 +92,27 @@ paths:
       summary: Ping
       tags:
       - ""
+  /apple/location/{code}:
+    get:
+      description: 返回 code 文本
+      operationId: apple.location.code
+      parameters:
+      - description: 地区代码
+        example: US
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Location Code
+      tags:
+      - Apple
   /convert/svg/png:
     get:
       description: 将 SVG 图片转为 png

@@ -81,13 +81,13 @@ func toPng(ctx *gin.Context) {
 	ctx.Writer.Write(pngData)
 }
 
-// @id				convert.svg.png.get
-// @Summary		SVG to PNG
-// @Description	将 SVG 图片转为 png
-// @Tags			convert
-// @Produce		image/png
-// @Param			url			query	string	true	"svg图片地址" example(https://www.docker.com/wp-content/uploads/2024/01/icon-docker-square.svg)
-// @Param			download	query	bool	false	"是否下载" example(false)
-// @Router			/convert/svg/png [get]
-// @Success		200
+//	@id				convert.svg.png.get
+//	@Summary		SVG to PNG
+//	@Description	将 SVG 图片转为 png
+//	@Tags			convert
+//	@Produce		image/png
+//	@Param			url			query	string	true	"svg图片地址"	example(https://www.docker.com/wp-content/uploads/2024/01/icon-docker-square.svg)
+//	@Param			download	query	bool	false	"是否下载"		example(false)
+//	@Router			/convert/svg/png [get]
+//	@Success		200
 func _(c *gin.Context) {}

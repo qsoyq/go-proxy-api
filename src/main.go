@@ -48,10 +48,10 @@ func setup() *gin.Engine {
 	return r
 }
 
-// @title	go-proxy-api
-// @version	0.1.2
-// @description
-// @BasePath	/api
+//	@title		go-proxy-api
+//	@version	0.1.2
+//	@description
+//	@BasePath	/api
 func main() {
 	flag.StringVar(&cmd.SwaggerPath, "swagger", "./src/docs/swagger.json", "swagger json path")
 	flag.BoolVar(&cmd.RedirectIfNotFound, "redirect", false, "是否启用 404 下自动重定向")
