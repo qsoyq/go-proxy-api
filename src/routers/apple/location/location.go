@@ -21,12 +21,12 @@ func code(ctx *gin.Context) {
 	ctx.String(http.StatusOK, code)
 }
 
-// @id			apple.location.code
-// @Summary		Location Code
-// @Description	返回 code 文本
-// @Tags		Apple
-// @Produce		text/plain
-// @Param		code	path	string	true	"地区代码"	Example(US)
-// @Router		/apple/location/{code} [get]
-// @Success		200	{string}	string	地区代码
+//	@id				apple.location.code
+//	@Summary		Location Code
+//	@Description	返回 code 文本
+//	@Tags			Apple
+//	@Produce		text/plain
+//	@Param			code	path	string	true	"地区代码"	Example(US)
+//	@Router			/apple/location/{code} [get]
+//	@Success		200	{string}	string	地区代码
 func _(c *gin.Context) {}

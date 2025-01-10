@@ -6,6 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Success struct{}
+
 func BadEntity(loc, msg, _type string) gin.H {
 	return gin.H{
 		"detail": []gin.H{

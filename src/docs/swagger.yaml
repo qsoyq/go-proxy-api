@@ -1,5 +1,7 @@
 basePath: /api
 definitions:
+  errors.Success:
+    type: object
   routers.PingDocsScheme:
     properties:
       docs:
@@ -197,4 +199,49 @@ paths:
       summary: Ping
       tags:
       - ""
+  /webhook/twilio/sms/{sid}/{token}/{from}/{to}/{body}:
+    get:
+      description: 通过 Twilio API 发送短信
+      operationId: twilio.sms.get
+      parameters:
+      - description: sid
+        example: AC64f796e3a022cd
+        in: path
+        name: sid
+        required: true
+        type: string
+      - description: auth token
+        example: 32a8fc7ef68c1a6a79
+        in: path
+        name: token
+        required: true
+        type: string
+      - description: 发送号码
+        example: "+19711231234"
+        in: path
+        name: from
+        required: true
+        type: string
+      - description: 接收号码
+        example: "+19711231234"
+        in: path
+        name: to
+        required: true
+        type: string
+      - description: 短信内容
+        example: helloworld
+        in: path
+        name: body
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/errors.Success'
+      summary: Twilio SMS
+      tags:
+      - Webhook
 swagger: "2.0"

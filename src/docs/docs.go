@@ -194,9 +194,75 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/webhook/twilio/sms/{sid}/{token}/{from}/{to}/{body}": {
+            "get": {
+                "description": "通过 Twilio API 发送短信",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Webhook"
+                ],
+                "summary": "Twilio SMS",
+                "operationId": "twilio.sms.get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "example": "AC64f796e3a022cd",
+                        "description": "sid",
+                        "name": "sid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "32a8fc7ef68c1a6a79",
+                        "description": "auth token",
+                        "name": "token",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "+19711231234",
+                        "description": "发送号码",
+                        "name": "from",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "+19711231234",
+                        "description": "接收号码",
+                        "name": "to",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "helloworld",
+                        "description": "短信内容",
+                        "name": "body",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Success"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "errors.Success": {
+            "type": "object"
+        },
         "routers.PingDocsScheme": {
             "type": "object",
             "required": [
