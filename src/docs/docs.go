@@ -263,6 +263,20 @@ const docTemplate = `{
         "errors.Success": {
             "type": "object"
         },
+        "routers.DomainResultScheme": {
+            "type": "object",
+            "properties": {
+                "addrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
         "routers.PingDocsScheme": {
             "type": "object",
             "required": [
@@ -287,6 +301,7 @@ const docTemplate = `{
             "required": [
                 "current",
                 "docs",
+                "domains",
                 "message",
                 "run_at",
                 "run_at_ts",
@@ -306,6 +321,13 @@ const docTemplate = `{
                             "$ref": "#/definitions/routers.PingDocsScheme"
                         }
                     ]
+                },
+                "domains": {
+                    "description": "域名信息",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routers.DomainResultScheme"
+                    }
                 },
                 "message": {
                     "description": "保留字段",
@@ -365,7 +387,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "0.1.2",
+	Version:          "0.1.0",
 	Host:             "",
 	BasePath:         "/api",
 	Schemes:          []string{},

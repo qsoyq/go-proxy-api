@@ -1,7 +1,11 @@
 package routers
 
 import (
+	"fmt"
+	"net"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +20,12 @@ type PingDocsScheme struct {
 	Redoc string `json:"redoc" binding:"required" example:"/redoc"`
 	// 指向 Swagger UI 文档格式的页面
 	Docs string `json:"docs" binding:"required" example:"/docs/index.html"`
+	// 域名信息
+}
+
+type DomainResultScheme struct {
+	Domain string   `json:"domain"`
+	Addrs  []string `json:"addrs"`
 }
 
 type PingOutputScheme struct {
@@ -33,6 +43,8 @@ type PingOutputScheme struct {
 	Version string `json:"version" form:"version" binding:"required" example:"0.1.0"`
 	// 接口文档
 	Docs PingDocsScheme `json:"docs" form:"docs" binding:"required"`
+	// 域名信息
+	Domains []DomainResultScheme `json:"domains" binding:"required"`
 }
 
 func AddPingRouter(router *gin.Engine) {
@@ -47,25 +59,37 @@ func pingHandler(ctx *gin.Context) {
 	formattedTime := current.Format(time.DateTime)
 	docs := PingDocsScheme{Redoc: "/redoc", Docs: "/docs/index.html"}
 	output := PingOutputScheme{Docs: docs, Message: "pong", Timestamp: timestamp, Current: formattedTime, RunAtTs: RUN_AT_TS, RunAt: RUN_AT, Version: constants.VERSION}
+	domainEnv := os.Getenv("PingDomains")
+	if domainEnv != "" {
+		domainList := strings.Split(domainEnv, ",")
+		for _, domain := range domainList {
+			if addrList, err := net.LookupHost(domain); err == nil {
+				output.Domains = append(output.Domains, DomainResultScheme{Domain: domain, Addrs: addrList})
+			} else {
+				fmt.Printf("[Ping] can't resolve domain: %s, err: %s\n", domain, err.Error())
+			}
+		}
+	}
+
 	ctx.JSON(http.StatusOK, output)
 }
 
-//	@id				ping.get
-//	@Summary		Ping
-//	@Description	Ping
-//	@Tags
-//	@Accept		json
-//	@Produce	json
-//	@Router		/ping [get]
-//	@Success	200	{object}	PingOutputScheme
+// @id			ping.get
+// @Summary		Ping
+// @Description	Ping
+// @Tags
+// @Accept		json
+// @Produce	json
+// @Router		/ping [get]
+// @Success	200	{object}	PingOutputScheme
 func _(c *gin.Context) {}
 
-//	@id				/.get
-//	@Summary		Ping
-//	@Description	Ping
-//	@Tags
-//	@Accept		json
-//	@Produce	json
-//	@Router		/ [get]
-//	@Success	200	{object}	PingOutputScheme
+// @id				/.get
+// @Summary		Ping
+// @Description	Ping
+// @Tags
+// @Accept		json
+// @Produce	json
+// @Router		/ [get]
+// @Success	200	{object}	PingOutputScheme
 func _(c *gin.Context) {}

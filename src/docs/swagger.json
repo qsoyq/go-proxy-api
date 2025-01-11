@@ -3,7 +3,7 @@
     "info": {
         "title": "go-proxy-api",
         "contact": {},
-        "version": "0.1.2"
+        "version": "0.1.0"
     },
     "basePath": "/api",
     "paths": {
@@ -255,6 +255,20 @@
         "errors.Success": {
             "type": "object"
         },
+        "routers.DomainResultScheme": {
+            "type": "object",
+            "properties": {
+                "addrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
         "routers.PingDocsScheme": {
             "type": "object",
             "required": [
@@ -279,6 +293,7 @@
             "required": [
                 "current",
                 "docs",
+                "domains",
                 "message",
                 "run_at",
                 "run_at_ts",
@@ -298,6 +313,13 @@
                             "$ref": "#/definitions/routers.PingDocsScheme"
                         }
                     ]
+                },
+                "domains": {
+                    "description": "域名信息",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routers.DomainResultScheme"
+                    }
                 },
                 "message": {
                     "description": "保留字段",

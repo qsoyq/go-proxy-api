@@ -2,6 +2,15 @@ basePath: /api
 definitions:
   errors.Success:
     type: object
+  routers.DomainResultScheme:
+    properties:
+      addrs:
+        items:
+          type: string
+        type: array
+      domain:
+        type: string
+    type: object
   routers.PingDocsScheme:
     properties:
       docs:
@@ -26,6 +35,11 @@ definitions:
         allOf:
         - $ref: '#/definitions/routers.PingDocsScheme'
         description: 接口文档
+      domains:
+        description: 域名信息
+        items:
+          $ref: '#/definitions/routers.DomainResultScheme'
+        type: array
       message:
         description: 保留字段
         example: pong
@@ -49,6 +63,7 @@ definitions:
     required:
     - current
     - docs
+    - domains
     - message
     - run_at
     - run_at_ts
@@ -76,7 +91,7 @@ definitions:
 info:
   contact: {}
   title: go-proxy-api
-  version: 0.1.2
+  version: 0.1.0
 paths:
   /:
     get:
